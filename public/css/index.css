@@ -1,7 +1,497 @@
-html {
+/*:root {
   max-width: 720px;
+
+  background: rgb(153, 34, 34);
 }
 
 body {
   background: #fff;
 }
+
+* {
+  color: red;
+}
+
+h1 {
+  color: yellow;
+}
+
+.box {
+  background: #c7c2c2;
+}
+
+#user {
+  color: blue;
+}
+
+h1, h2, button {
+  color: green;
+}
+
+.button {
+  background: red;
+}
+
+div > p {
+  color: paleturquoise;
+}
+footer {
+  background: #c7c2c2;
+}
+
+footer > .user {
+  color: palevioletred;
+}
+
+footer > h1 {
+  color: palevioletred;
+}
+
+footer em.child, 
+footer div.child  {
+  color: rgb(14, 233, 25);
+}
+
+.p-top {
+  background: black;
+}
+h1 + p {
+  background: black;
+} */
+ 
+.card-dark {
+  background: #bebcbc; 
+}
+.item {
+  color: green;
+}
+/* для першого об'єкту у списку */
+.item:first-child {
+  color: blue;
+}
+/* для останього об'єкту у списку */
+.item:last-child {
+  color: yellow;
+}
+/* лише для одного об'єкту у списку
+.item:only-child {
+  color: purple;
+}
+*/
+/*
+
+для першого об'єкту певного типу, накшталт <p> <b> <em> і т.д.
+
+*/
+.item:first-of-type {
+  color: blue;
+}
+
+/*
+для останнього об'єкту певного типу, накшталт <p> <b> <em> і т.д.
+*/
+.item:last-of-type {
+  color: red;
+}
+/*
+ для одиничного об'єкту певного типу, накшталт <p> <b> <em> і т.д.
+*/
+.item:only-of-type {
+  color: purple;
+}
+
+/*
+ селектор порядкової дитини
+(even) - для парних
+(odd) - для НЕ парних 
+формули(3n+1) де n змінна з порядковим номером
+*/
+
+.item:nth-child(3) {
+  color: rgb(62, 9, 146);
+}
+
+/* селектор порядкової дитини починається з кінця
+(even) - для парних
+(odd) - для НЕ парних 
+формули(3n+1) де n змінна з порядковим номером
+.item:nth-last-child(3) {
+  color: rgb(0, 0, 0);
+} */
+
+/* 
+!! селектор порядкового об'єкту певного типу                      !!
+!! використовуючи nth-last-of-type використовує зворотній порядок !!
+(even) - для парних
+(odd)  - для НЕ парних 
+формули(3n+1) де n змінна з порядковим номером 
+*/
+
+.item:nth-of-type(2n) {
+  color: rgb(0, 0, 0);
+}
+/*
+селектор невідповідності, тобто об'єкти,що не відповідають вказаним селекторам
+*/
+strong:not(.item) {
+  color: red;
+}
+
+p:empty {
+  height: 10px;
+  background: red;
+}
+
+.input-dark {
+  background: black; 
+}
+
+.input-dark[required] 
+{
+  background: red; 
+}
+
+.input-dark[type="number"] 
+{
+  background: rgb(12, 192, 42); 
+}
+/* 
+!селектор наявності значення атрибута - селектор, який
+вибирає тег, якщо він має вказаний атрибут, в якому можуть
+перебувати декілька значень, одне з яких є вказаним значенням!
+ */
+
+.small-img[alt~="small"] {
+  height: 500px;
+}
+
+a[rel~="external"]{
+  color: green;
+}
+
+/* Селектор префіксу значення атрибута — це селектор, який
+вибирає тег, якщо він має вказаний атрибут, значення якого
+
+єдине та починається з вказаного або з value value- */
+
+button[class|="btn"] {
+  background: red;
+}
+/*
+ Селектор початку значення атрибута — це селектор,
+який вибирає тег, якщо він має вказаний атрибут,
+значення якого починається з вказаного value
+*/
+
+a[class^="btn"] {
+  background: red;
+}
+
+/*
+Селектор кореня значення атрибута — це селектор,
+який вибирає тег, якщо він має вказаний атрибут,
+значення якого має корінь з вказаного value
+
+a[class*="btn"] {
+  background: rgb(97, 43, 43);
+}
+*/
+/*
+Селектор кінцівки значення атрибута — це селектор,
+який вибирає тег, якщо він має вказаний атрибут,
+значення якого закінчується з вказаного value
+
+a[class$="big"] {
+  background: rgb(8, 8, 8);
+}
+*/
+
+.btn::first-letter {
+  color: yellow;
+}
+
+.big-text::first-line {
+  color: red;
+}
+
+.input-dark::placeholder {
+  color: black;
+}
+
+.big-text::before,
+.big-text::after {
+  content: '$$$';
+  color: green;
+}
+/*
+це CSS селектор, який використовується для
+вибору всіх елементів-посилань (тег <a>) на сторінці, а
+також для будь-яких інших елементів, що мають атрибут
+href, що містить посилання.
+
+:any-link {
+  color: blue;
+  }
+  
+  !!! :dir() — це CSS-селектор, який використовується для
+стилізації елементів залежно від напрямку тексту
+відображення. Напрямок тексту може бути зліва направо, як
+українська (ltr) або справа наліво, як арабська (rtl), залежно
+від мови, яку використовують на сторінці. !!!
+
+:dir(ltr) {
+
+font-family: Arial, sans-serif;
+}
+
+:dir(rtl) {
+  font-family: Tahoma, sans-serif;
+}
+
+    !!! :fullscreen — це CSS-селектор, який використовується для
+стилізації елементів, які знаходяться в повноекранному
+режимі (при натисканні на кнопку "Fullscreen" в браузері). 
+
+.element:fullscreen {
+background-color: black;
+color: white;
+}
+
+
+!!! Селектор :current() — цей селектор є елементом або
+предком елемента, який відображається в цей момент.
+
+Зараз працює тільки із субтитрами на відео, що дозволяє їх
+докладніше стилізувати. Наприклад, змінити тло субтитрів.
+
+:current( ) p, li, dt, dd {
+background: yellow;
+}
+
+!!! :future — це CSS-селектор, який працює у вимірі часу.
+Він вибирає будь-який елемент, який повністю з’являється
+після елемента, який відповідає псевдокласу :current.
+
+Зараз працює тільки із субтитрами на відео, що дозволяє їх
+докладніше стилізувати. Наприклад, відобразити частину
+наступних субтитрів.
+'
+:future( ) p, span {
+display: none;
+}
+
+!!!  :past — це тимчасовий псевдоклас, який вибирає будь-який
+елемент, який повністю з’являється перед елементом, який
+відповідає селектором :current у часовій послідовності.
+
+Зараз працює тільки із субтитрами на відео, що дозволяє їх
+докладніше стилізувати. Наприклад, додати анімацію, щоб
+забрати субтитри
+
+:past( ) p, span {
+display: none;
+}
+
+
+!!! :host-context() — це CSS-селектор, який використовується
+для вибору елементів, які мають певні дитячі елементи
+
+:host-context( ) .specific-class {
+background-color: yellow;
+}
+
+!!! :has() — це CSS-селектор, який визначає елементи, які
+містять піделементи, що відповідають заданому селектору.
+
+Наприклад, якщо ми маємо HTML структуру зі заголовками
+(<h1>, <h2>) і абзацом (<p>), ми можемо використовувати
+селектор :has() для вибору
+
+h1:has( ) + p {
+margin-bottom: 0;
+}
+
+<!-- не змінюється h1 -- >
+< >Title</ >
+< >Subtitle</ >
+
+<!-- стилізується h1 -- >
+
+< >Description</ >
+
+
+!!! :left — CSS-селектор, який використовується для стилізації
+елементів, що знаходяться на лівій сторінці під час друку.
+
+@page:left {
+background-color: red;
+}
+
+!!! :right — CSS-селектор, який використовується для стилізації
+елементів, що знаходяться на правій сторінці під час друку.
+
+@page:right {
+background-color: green;
+}
+
+!!! :first — це CSS-селектор, за допомогою якого в поєднанні з
+селектором @page можна застосувати стиль лише до
+першої сторінки під час друку.
+
+@page:first {
+margin-top: 50%;
+}
+
+!!! :picture-in-picture — це CSS-селектор, який
+використовується для стилізації елементів, які знаходяться
+в режимі picture-in-picture (зображення в зображенні).
+
+:picture-in-picture {
+box-shadow: 0 0 0 5px red;
+}
+
+!!! :playing — це CSS-селектор, який використовується для
+стилізації елементів, які знаходяться в стані відтворення.
+
+:playing {
+border: 5px solid green;
+}
+
+!!! :paused — це CSS-селектор, який використовується для
+вибору елементів, які знаходяться в стані паузи (зупинені).
+
+:paused {
+border: 5px solid orange;
+}
+
+!!! :scope — це псевдоклас CSS, який має так же значення що і
+:root, оскільки наразі немає способу явного встановлення
+елемента з областю видимості.
+
+У JavaScript використовується для вказівки нащадків певного
+елемента
+
+:scope {
+background-color: tan;
+}
+
+!!! Селектор :defined — цей селектор знаходить будь-який
+елемент, який був визначений, включаючи будь-який
+стандартний вбудований в браузер елемент та елементи
+користувача (тобто вбудовані за допомогою JS).
+
+:defined {
+font-style: italic;
+}
+
+!!! Селектор ::selection — цей псевдоклас застосовує стиль до
+виділеного користувачем тексту.
+
+::selection {
+background-color: cyan;
+}
+
+!!! :indeterminate — цей селектор представляє будь-який
+елемент форми, стан якого невизначений.
+
+input {
+background: lime;
+}
+
+:indeterminate
+
+!!! :default — цей селектор визначає елемент форми,
+встановлений спочатку під час завантаження сторінки.
+
+input {
+background-color: lime;
+}
+
+:default
+
+!!! element() — це CSS властивість, яка дозволяє вказувати
+елемент HTML, який має бути використаний як початкова
+точка для пошуку стилів
+
+element( ) p {
+color: blue;
+}
+
+element(<ім'я елемента>)
+  */
+
+  #test:target {
+    color: black;
+  }
+
+  .link:link {
+    color: black;
+  }
+  .link:hover {
+    color: black;
+  }
+  .card:hover {
+    background: greenyellow;
+  }
+  .link:active {
+    color: purple;
+  }
+  .card:active {
+    background-color: goldenrod;
+  }
+  input {
+    background-color: gray;
+  }
+  input:focus {
+    background-color: red;
+  }
+
+  .card:focus-within {
+    background: black;
+  }
+
+  .card:lang(en) > span::after {
+   content: ' (en)';
+  }
+  button {
+    background-color: gold;
+  }
+   
+  button:enabled {
+    background-color: blueviolet;
+  }
+  button:disabled {
+    background-color: red;
+  }
+  .inp:read-write {
+    background-color: blue;
+  }
+  .inp:read-only {
+    background-color: gold;
+  }
+  input[type='checkbox']:checked ~ span {
+    background: red;
+  }
+
+  .valid:valid {
+    background: yellow;
+  }
+
+  .valid:invalid {
+    background: brown;
+  }
+  .valid:optional {
+    background: goldenrod;
+  }
+  .number:focus {
+    background-color: green;
+  }
+  .number:out-of-range {
+    background: red;
+  }
+  .number:in-range {
+    background: green;
+  }
+  input:placeholder-shown ~ span {
+    background-color: aquamarine;
+  }
